@@ -18,13 +18,23 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/workers', function () {
-    return Inertia::render('Worker/Index');
-})->middleware(['auth', 'verified'])->name('workers');
+
+// Worker -- Routes /////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/workers', [\App\Http\Controllers\WorkerController::class, 'index']
+)->middleware(['auth', 'verified'])->name('worker.index');
 
 Route::get('/worker/create', function () {
     return Inertia::render('Worker/Create');
 })->middleware(['auth', 'verified'])->name('worker.create');
+
+Route::post('/worker/create', [\App\Http\Controllers\WorkerController::class, 'store']
+)->middleware(['auth', 'verified'])->name('worker.store');
+
+Route::get('/worker/{worker}', [\App\Http\Controllers\WorkerController::class, 'show']
+)->middleware(['auth', 'verified'])->name('worker.show');
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

@@ -16,9 +16,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    form.post(route('worker.store'));
 };
 
 </script>
@@ -28,13 +26,12 @@ const submit = () => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Workers</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавьте нового рабочего</h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">Тут воркеры</div>
+                <div class="p-10 bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <form @submit.prevent="submit">
                         <div>
@@ -57,8 +54,8 @@ const submit = () => {
                             <InputLabel for="surname" value="Surname"/>
 
                             <TextInput
-                                id="email"
-                                type="email"
+                                id="surname"
+                                type="text"
                                 class="mt-1 block w-full"
                                 v-model="form.surname"
                                 required
@@ -69,46 +66,40 @@ const submit = () => {
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="password" value="Password"/>
+                            <InputLabel for="birthday" value="Birthday"/>
 
                             <TextInput
-                                id="password"
-                                type="password"
+                                id="birthday"
+                                type="date"
                                 class="mt-1 block w-full"
-                                v-model="form.password"
+                                v-model="form.birthday"
                                 required
-                                autocomplete="new-password"
+                                autocomplete="birthday"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.password"/>
+                            <InputError class="mt-2" :message="form.errors.birthday"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="password_confirmation" value="Confirm Password"/>
+                            <InputLabel for="phone_number" value="Phone Number"/>
 
                             <TextInput
-                                id="password_confirmation"
-                                type="password"
+                                id="phone_number"
+                                type="number"
                                 class="mt-1 block w-full"
-                                v-model="form.password_confirmation"
+                                v-model="form.phone_number"
                                 required
-                                autocomplete="new-password"
+                                autocomplete="phone_number"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.password_confirmation"/>
+                            <InputError class="mt-2" :message="form.errors.phone_number"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <Link
-                                :href="route('login')"
-                                class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            >
-                                Already registered?
-                            </Link>
 
                             <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }"
                                            :disabled="form.processing">
-                                Register
+                                Add worker
                             </PrimaryButton>
                         </div>
                     </form>
