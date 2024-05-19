@@ -1,31 +1,34 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
+import NavLink from "@/Components/NavLink.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
+const props = defineProps(['product']);
+
+
 const form = useForm({
-    name: '',
-    surname: '',
-    birthday: '',
-    phone_number: '',
-    sale_id: '',
+    name_product: props.product.name_product,
+    cost_product: props.product.cost_product,
+    count_product: props.product.count_product,
+    date_receiving: props.product.date_receiving,
 });
 
 const submit = () => {
-    form.post(route('worker.store'));
+    form.patch(route('product.update', props.product.id));
 };
 
 </script>
 
 <template>
-    <Head title="Workers"/>
+    <Head title="Изменение {{ product.name_product }}"/>
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавьте нового рабочего</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Отредактируйте продукт</h2>
         </template>
 
         <div class="py-12">
@@ -34,71 +37,71 @@ const submit = () => {
 
                     <form @submit.prevent="submit">
                         <div>
-                            <InputLabel for="name" value="Name"/>
+                            <InputLabel for="name_product" value="Название продукта"/>
 
                             <TextInput
-                                id="name"
+                                id="name_product"
                                 type="text"
                                 class="mt-1 block w-full"
-                                v-model="form.name"
+                                v-model="form.name_product"
                                 required
                                 autofocus
-                                autocomplete="name"
+                                autocomplete="name_product"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.name"/>
+                            <InputError class="mt-2" :message="form.errors.name_product"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="surname" value="Surname"/>
+                            <InputLabel for="cost_product" value="Цена (&#x20bd/шт)"/>
 
                             <TextInput
-                                id="surname"
-                                type="text"
-                                class="mt-1 block w-full"
-                                v-model="form.surname"
-                                required
-                                autocomplete="surname"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.surname"/>
-                        </div>
-
-                        <div class="mt-4">
-                            <InputLabel for="birthday" value="Birthday"/>
-
-                            <TextInput
-                                id="birthday"
-                                type="date"
-                                class="mt-1 block w-full"
-                                v-model="form.birthday"
-                                required
-                                autocomplete="birthday"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.birthday"/>
-                        </div>
-
-                        <div class="mt-4">
-                            <InputLabel for="phone_number" value="Phone Number"/>
-
-                            <TextInput
-                                id="phone_number"
+                                id="cost_product"
                                 type="number"
                                 class="mt-1 block w-full"
-                                v-model="form.phone_number"
+                                v-model="form.cost_product"
                                 required
-                                autocomplete="phone_number"
+                                autocomplete="cost_product"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.phone_number"/>
+                            <InputError class="mt-2" :message="form.errors.cost_product"/>
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="date_receiving" value="Дата поставки"/>
+
+                            <TextInput
+                                id="date_receiving"
+                                type="date"
+                                class="mt-1 block w-full"
+                                v-model="form.date_receiving"
+                                required
+                                autocomplete="date_receiving"
+                            />
+
+                            <InputError class="mt-2" :message="form.errors.date_receiving"/>
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="count_product" value="Количество(шт)"/>
+
+                            <TextInput
+                                id="count_product"
+                                type="number"
+                                class="mt-1 block w-full"
+                                v-model="form.count_product"
+                                required
+                                autocomplete="count_product"
+                            />
+
+                            <InputError class="mt-2" :message="form.errors.count_product"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
 
                             <button class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all" :class="{ 'opacity-25': form.processing }"
-                                           :disabled="form.processing">
-                                Добавить рабочего
+                                    :disabled="form.processing">
+                                Отредактировать продукт
                             </button>
                         </div>
                     </form>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Worker;
+namespace App\Http\Resources\Buyer;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WorkerResource extends JsonResource
+class BuyerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,6 +19,7 @@ class WorkerResource extends JsonResource
             'name' => $this->name,
             'surname' => $this->surname,
             'birthday' => $this->birthday,
+            'email' => $this->email,
             'phone_number' => $this->phone_number,
             'date_on_add' => $this->created_at->diffForHumans(),
         ];

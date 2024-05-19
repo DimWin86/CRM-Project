@@ -43,21 +43,21 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Products -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('products')" :active="route().current('products')">
+                                <NavLink :href="route('product.index')" :active="route().current('products')">
                                     Products
                                 </NavLink>
                             </div>
 
                             <!-- Navigation Sales -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('sales')" :active="route().current('sales')">
+                                <NavLink :href="route('sale.index')" :active="route().current('sales')">
                                     Sales
                                 </NavLink>
                             </div>
 
                             <!-- Navigation Buyers -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('buyers')" :active="route().current('buyers')">
+                                <NavLink :href="route('buyer.index')" :active="route().current('buyers')">
                                     Buyers
                                 </NavLink>
                             </div>

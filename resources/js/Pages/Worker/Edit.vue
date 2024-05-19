@@ -1,21 +1,25 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
+import NavLink from "@/Components/NavLink.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
+const props = defineProps(['worker']);
+
+
 const form = useForm({
-    name: '',
-    surname: '',
-    birthday: '',
-    phone_number: '',
-    sale_id: '',
+    name: props.worker.name,
+    surname: props.worker.surname,
+    birthday: props.worker.birthday,
+    phone_number: props.worker.phone_number,
+    sale_id: props.worker.sale_id,
 });
 
 const submit = () => {
-    form.post(route('worker.store'));
+    form.patch(route('worker.update', props.worker.id));
 };
 
 </script>
@@ -25,7 +29,7 @@ const submit = () => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавьте нового рабочего</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Отредактируйте рабочего</h2>
         </template>
 
         <div class="py-12">
@@ -97,8 +101,8 @@ const submit = () => {
                         <div class="flex items-center justify-end mt-4">
 
                             <button class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all" :class="{ 'opacity-25': form.processing }"
-                                           :disabled="form.processing">
-                                Добавить рабочего
+                                    :disabled="form.processing">
+                                Отредактировать рабочего
                             </button>
                         </div>
                     </form>

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email');
             $table->unsignedTinyInteger('phone_number');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

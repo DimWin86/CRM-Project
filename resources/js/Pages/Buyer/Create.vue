@@ -10,22 +10,22 @@ const form = useForm({
     name: '',
     surname: '',
     birthday: '',
+    email: '',
     phone_number: '',
-    sale_id: '',
 });
 
 const submit = () => {
-    form.post(route('worker.store'));
+    form.post(route('buyer.store'));
 };
 
 </script>
 
 <template>
-    <Head title="Workers"/>
+    <Head title="Create-Sale"/>
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавьте нового рабочего</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавление покупателя</h2>
         </template>
 
         <div class="py-12">
@@ -34,10 +34,10 @@ const submit = () => {
 
                     <form @submit.prevent="submit">
                         <div>
-                            <InputLabel for="name" value="Name"/>
+                            <InputLabel for="name" value="Имя"/>
 
                             <TextInput
-                                id="name"
+                                id="worker_id"
                                 type="text"
                                 class="mt-1 block w-full"
                                 v-model="form.name"
@@ -50,7 +50,7 @@ const submit = () => {
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="surname" value="Surname"/>
+                            <InputLabel for="surname" value="Фамилия"/>
 
                             <TextInput
                                 id="surname"
@@ -58,21 +58,20 @@ const submit = () => {
                                 class="mt-1 block w-full"
                                 v-model="form.surname"
                                 required
-                                autocomplete="surname"
+                                autocomplete="product_id"
                             />
 
                             <InputError class="mt-2" :message="form.errors.surname"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="birthday" value="Birthday"/>
+                            <InputLabel for="buyer_id" value="День рождения"/>
 
                             <TextInput
                                 id="birthday"
                                 type="date"
                                 class="mt-1 block w-full"
                                 v-model="form.birthday"
-                                required
                                 autocomplete="birthday"
                             />
 
@@ -80,7 +79,22 @@ const submit = () => {
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="phone_number" value="Phone Number"/>
+                            <InputLabel for="email" value="Email"/>
+
+                            <TextInput
+                                id="email"
+                                type="email"
+                                class="mt-1 block w-full"
+                                v-model="form.email"
+                                required
+                                autocomplete="email"
+                            />
+
+                            <InputError class="mt-2" :message="form.errors.email"/>
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="phone_number" value="Номер телефона"/>
 
                             <TextInput
                                 id="phone_number"
@@ -96,9 +110,11 @@ const submit = () => {
 
                         <div class="flex items-center justify-end mt-4">
 
-                            <button class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all" :class="{ 'opacity-25': form.processing }"
-                                           :disabled="form.processing">
-                                Добавить рабочего
+                            <button class="px-2 py-1 text-sm text-white bg-gray-700
+                            rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all"
+                                    :class="{ 'opacity-25': form.processing }"
+                                    :disabled="form.processing">
+                                Добавить
                             </button>
                         </div>
                     </form>

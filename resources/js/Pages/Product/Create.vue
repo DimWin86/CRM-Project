@@ -7,25 +7,24 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const form = useForm({
-    name: '',
-    surname: '',
-    birthday: '',
-    phone_number: '',
-    sale_id: '',
+    name_product: '',
+    cost_product: '',
+    count_product: '',
+    date_receiving: '',
 });
 
 const submit = () => {
-    form.post(route('worker.store'));
+    form.post(route('product.store'));
 };
 
 </script>
 
 <template>
-    <Head title="Workers"/>
+    <Head title="Create-Product"/>
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавьте нового рабочего</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавьте новый продукт</h2>
         </template>
 
         <div class="py-12">
@@ -34,71 +33,72 @@ const submit = () => {
 
                     <form @submit.prevent="submit">
                         <div>
-                            <InputLabel for="name" value="Name"/>
+                            <InputLabel for="name_product" value="Название продукта"/>
 
                             <TextInput
-                                id="name"
+                                id="name_product"
                                 type="text"
                                 class="mt-1 block w-full"
-                                v-model="form.name"
+                                v-model="form.name_product"
                                 required
                                 autofocus
-                                autocomplete="name"
+                                autocomplete="name_product"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.name"/>
+                            <InputError class="mt-2" :message="form.errors.name_product"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="surname" value="Surname"/>
+                            <InputLabel for="cost_product" value="Цена продукта (&#x20bd/шт)"/>
 
                             <TextInput
-                                id="surname"
-                                type="text"
+                                id="cost_product"
+                                type="number"
                                 class="mt-1 block w-full"
-                                v-model="form.surname"
+                                v-model="form.cost_product"
                                 required
                                 autocomplete="surname"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.surname"/>
+                            <InputError class="mt-2" :message="form.errors.cost_product"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="birthday" value="Birthday"/>
+                            <InputLabel for="date_receiving" value="Последняя дата поставки"/>
 
                             <TextInput
-                                id="birthday"
+                                id="date_receiving"
                                 type="date"
                                 class="mt-1 block w-full"
-                                v-model="form.birthday"
+                                v-model="form.date_receiving"
                                 required
-                                autocomplete="birthday"
+                                autocomplete="date_receiving"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.birthday"/>
+                            <InputError class="mt-2" :message="form.errors.date_receiving"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="phone_number" value="Phone Number"/>
+                            <InputLabel for="count_product" value="Количество на складе (шт)"/>
 
                             <TextInput
-                                id="phone_number"
+                                id="count_product"
                                 type="number"
                                 class="mt-1 block w-full"
-                                v-model="form.phone_number"
+                                v-model="form.count_product"
                                 required
-                                autocomplete="phone_number"
+                                autocomplete="count_product"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.phone_number"/>
+                            <InputError class="mt-2" :message="form.errors.count_product"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
 
-                            <button class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all" :class="{ 'opacity-25': form.processing }"
+                            <button class="px-2 py-1 text-sm text-white bg-gray-700
+                            rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all" :class="{ 'opacity-25': form.processing }"
                                            :disabled="form.processing">
-                                Добавить рабочего
+                                Добавить
                             </button>
                         </div>
                     </form>

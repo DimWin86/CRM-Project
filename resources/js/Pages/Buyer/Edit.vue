@@ -1,31 +1,35 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
+import NavLink from "@/Components/NavLink.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
+const props = defineProps(['buyer']);
+
+
 const form = useForm({
-    name: '',
-    surname: '',
-    birthday: '',
-    phone_number: '',
-    sale_id: '',
+    name: props.buyer.name,
+    surname: props.buyer.surname,
+    birthday: props.buyer.birthday,
+    email: props.buyer.email,
+    phone_number: props.buyer.phone_number,
 });
 
 const submit = () => {
-    form.post(route('worker.store'));
+    form.patch(route('buyer.update', props.buyer.id));
 };
 
 </script>
 
 <template>
-    <Head title="Workers"/>
+    <Head title="Покупатель"/>
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Добавьте нового рабочего</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Отредактируйте покупателя</h2>
         </template>
 
         <div class="py-12">
@@ -80,6 +84,21 @@ const submit = () => {
                         </div>
 
                         <div class="mt-4">
+                            <InputLabel for="email" value="Email"/>
+
+                            <TextInput
+                                id="email"
+                                type="email"
+                                class="mt-1 block w-full"
+                                v-model="form.email"
+                                required
+                                autocomplete="email"
+                            />
+
+                            <InputError class="mt-2" :message="form.errors.email"/>
+                        </div>
+
+                        <div class="mt-4">
                             <InputLabel for="phone_number" value="Phone Number"/>
 
                             <TextInput
@@ -97,8 +116,8 @@ const submit = () => {
                         <div class="flex items-center justify-end mt-4">
 
                             <button class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all" :class="{ 'opacity-25': form.processing }"
-                                           :disabled="form.processing">
-                                Добавить рабочего
+                                    :disabled="form.processing">
+                                Отредактировать покупателя
                             </button>
                         </div>
                     </form>

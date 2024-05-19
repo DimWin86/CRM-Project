@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedMediumInteger('count_product');// Кол-во
             $table->dateTime('date_receiving');// Дата поставки
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

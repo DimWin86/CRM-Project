@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('surname');
             $table->date('birthday');
             $table->unsignedTinyInteger('phone_number');
-            $table->foreignId('sale_id')->nullable()->constrained('sales');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
