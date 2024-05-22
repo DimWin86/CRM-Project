@@ -20,8 +20,10 @@ import {Head, Link} from '@inertiajs/vue3';
                         <div v-if="sale">
                             <div class="mb-10 bg-gray-300 rounded-lg">
                                 <div class="px-4 py-2 ">
-                                    <div>Продавец: {{ worker.name + ' ' + worker.surname }}</div>
-                                    <div>Покупатель: {{ buyer.name + ' ' + buyer.surname }}</div>
+                                    <div class= "mb-2">Продавец: {{ worker.worker_name + ' ' + worker.worker_surname }}<a class="ml-9 px-1 py-0.5 text-xs text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black
+                                  border border-2 border-gray-700 transition-all" :href="route('worker.show', sale.worker_id)">Прейти в профиль</a></div>
+                                    <div>Покупатель: {{ buyer.buyer_name + ' ' + buyer.buyer_surname }}<a class="ml-4 px-1 py-0.5 text-xs text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black
+                                  border border-2 border-gray-700 transition-all" :href="route('buyer.show', sale.buyer_id)">Прейти в профиль</a></div>
                                     <div>Продукт: {{ product.name_product }}</div>
                                     <div>Количество продуктов: {{ sale.count_buy }}</div>
                                     <div>Сумма продажи: {{ sale.cost_buy + '(&#x20bd)' }}</div>

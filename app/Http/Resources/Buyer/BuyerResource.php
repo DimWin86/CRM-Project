@@ -16,11 +16,11 @@ class BuyerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'surname' => $this->surname,
-            'birthday' => $this->birthday,
-            'email' => $this->email,
-            'phone_number' => $this->phone_number,
+            'buyer_name' => $this->buyer_name,
+            'buyer_surname' => $this->buyer_surname,
+            'buyer_birthday' => $this->buyer_birthday,
+            'buyer_email' => $this->buyer_email,
+            'buyer_phone_number' => $this->buyer_phone_number,
             'date_on_add' => $this->created_at->diffForHumans(),
         ];
     }

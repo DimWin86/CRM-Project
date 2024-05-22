@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('buyers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->date('birthday');
-            $table->string('email');
-            $table->unsignedTinyInteger('phone_number');
+            $table->string('buyer_name');
+            $table->string('buyer_surname');
+            $table->date('buyer_birthday');
+            $table->string('buyer_email');
+            $table->unsignedTinyInteger('buyer_phone_number');
             $table->timestamps();
 
             $table->softDeletes();

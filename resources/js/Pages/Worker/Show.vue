@@ -21,10 +21,10 @@ const props = defineProps(['worker', 'sale']);
                         <div v-if="worker">
                             <div class="mb-10 bg-gray-300 rounded-lg">
                                 <div class="px-4 py-2 ">
-                                    <div>Имя: {{ worker.name }}</div>
-                                    <div>Фамилия: {{ worker.surname }}</div>
-                                    <div>День рождения: {{ worker.birthday }}</div>
-                                    <div>Номер телефона: {{ worker.phone_number }}</div>
+                                    <div>Имя: {{ worker.worker_name }}</div>
+                                    <div>Фамилия: {{ worker.worker_surname }}</div>
+                                    <div>День рождения: {{ worker.worker_birthday }}</div>
+                                    <div>Номер телефона: {{ worker.worker_phone_number }}</div>
                                 </div>
                             </div>
                         </div>

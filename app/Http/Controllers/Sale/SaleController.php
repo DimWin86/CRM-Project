@@ -1,29 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Sale;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Sale\SaleResource;
-use App\Models\Buyer;
-use App\Models\Product;
 use App\Models\Sale;
-use App\Models\Worker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\select;
 
-class SaleController extends Controller
+class SaleController extends BaseController
 {
     public function index()
     {
-        $workers = Worker::all();
+        $salesData = $this->service->index();
 
-        $buyers = Buyer::all();
-
-        $products = Product::all();
-
-        $salesAll = Sale::all();
-
-        $sales = SaleResource::collection($salesAll)->resolve();
-
-        return inertia('Sale/Index', compact('sales', ['buyers', 'workers', 'products']));
+        return inertia('Sale/Index', compact('salesData'));
     }
 
     public function create()
@@ -41,13 +33,7 @@ class SaleController extends Controller
             'cost_buy' => 'required|integer',
         ]);
 
-        Sale::create([
-            'worker_id' => $request->worker_id,
-            'product_id' => $request->product_id,
-            'buyer_id' => $request->buyer_id,
-            'count_buy' => $request->count_buy,
-            'cost_buy' => $request->cost_buy,
-        ]);
+        $this->service->store($request);
 
         return redirect()->route('sale.index');
     }
@@ -67,13 +53,7 @@ class SaleController extends Controller
             'cost_buy' => 'required|integer',
         ]);
 
-        $sale->update([
-            'worker_id' => $request->worker_id,
-            'product_id' => $request->product_id,
-            'buyer_id' => $request->buyer_id,
-            'count_buy' => $request->count_buy,
-            'cost_buy' => $request->cost_buy,
-        ]);
+         $this->service->update($sale, $request);
 
         return redirect()->route('sale.index');
     }

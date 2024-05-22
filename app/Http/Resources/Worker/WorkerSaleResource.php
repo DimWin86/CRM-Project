@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Sale;
+namespace App\Http\Resources\Worker;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SaleResource extends JsonResource
+class WorkerSaleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,11 +18,11 @@ class SaleResource extends JsonResource
         $this->created_at = Carbon::parse($this->created_at);
 
         return [
-            "id" => $this->id,
-            "date_on_sale" => $this->created_at->diffForHumans(),
-            "worker_name" => $this->worker_name,
-            "worker_surname" => $this->worker_surname,
-            "name_product" => $this->name_product,
+            'id' => $this->id,
+            's_id' => $this->s_id,
+            'worker_name' => $this->worker_name,
+            'cost_buy' => $this->cost_buy,
+            'date_on_sale' => $this->created_at->diffForHumans(),
         ];
     }
 }

@@ -69,49 +69,49 @@ Route::delete('/product/{product}/delete', [\App\Http\Controllers\Product\Produc
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Sale -- Routes /////////////////////////////////////////////////////////////////////////////////
-Route::get('/sales', [\App\Http\Controllers\SaleController::class, 'index']
+Route::get('/sales', [\App\Http\Controllers\Sale\SaleController::class, 'index']
 )->middleware(['auth', 'verified'])->name('sale.index');
 
-Route::get('/sale/create', [\App\Http\Controllers\SaleController::class, 'create']
+Route::get('/sale/create', [\App\Http\Controllers\Sale\SaleController::class, 'create']
 )->middleware(['auth', 'verified'])->name('sale.create');
 
-Route::post('/sale/create', [\App\Http\Controllers\SaleController::class, 'store']
+Route::post('/sale/create', [\App\Http\Controllers\Sale\SaleController::class, 'store']
 )->middleware(['auth', 'verified'])->name('sale.store');
 
-Route::get('/sale/{sale}', [\App\Http\Controllers\SaleController::class, 'show']
+Route::get('/sale/{sale}', [\App\Http\Controllers\Sale\SaleController::class, 'show']
 )->middleware(['auth', 'verified'])->name('sale.show');
 
-Route::get('/sale/{sale}/edit', [\App\Http\Controllers\SaleController::class, 'edit']
+Route::get('/sale/{sale}/edit', [\App\Http\Controllers\Sale\SaleController::class, 'edit']
 )->middleware(['auth', 'verified'])->name('sale.edit');
 
-Route::patch('/sale/{sale}', [\App\Http\Controllers\SaleController::class, 'update']
+Route::patch('/sale/{sale}', [\App\Http\Controllers\Sale\SaleController::class, 'update']
 )->middleware(['auth', 'verified'])->name('sale.update');
 
-Route::delete('/sale/{sale}/delete', [\App\Http\Controllers\SaleController::class, 'delete']
+Route::delete('/sale/{sale}/delete', [\App\Http\Controllers\Sale\SaleController::class, 'delete']
 )->middleware(['auth', 'verified'])->name('sale.destroy');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Buyer -- Routes /////////////////////////////////////////////////////////////////////////////////
-Route::get('/buyers', [\App\Http\Controllers\BuyerController::class, 'index']
+Route::get('/buyers', [\App\Http\Controllers\Buyer\BuyerController::class, 'index']
 )->middleware(['auth', 'verified'])->name('buyer.index');
 
-Route::get('/buyer/create', [\App\Http\Controllers\BuyerController::class, 'create']
+Route::get('/buyer/create', [\App\Http\Controllers\Buyer\BuyerController::class, 'create']
 )->middleware(['auth', 'verified'])->name('buyer.create');
 
-Route::post('/buyer/create', [\App\Http\Controllers\BuyerController::class, 'store']
+Route::post('/buyer/create', [\App\Http\Controllers\Buyer\BuyerController::class, 'store']
 )->middleware(['auth', 'verified'])->name('buyer.store');
 
-Route::get('/buyer/{buyer}', [\App\Http\Controllers\BuyerController::class, 'show']
+Route::get('/buyer/{buyer}', [\App\Http\Controllers\Buyer\BuyerController::class, 'show']
 )->middleware(['auth', 'verified'])->name('buyer.show');
 
-Route::get('/buyer/{buyer}/edit', [\App\Http\Controllers\BuyerController::class, 'edit']
+Route::get('/buyer/{buyer}/edit', [\App\Http\Controllers\Buyer\BuyerController::class, 'edit']
 )->middleware(['auth', 'verified'])->name('buyer.edit');
 
-Route::patch('/buyer/{buyer}/edit', [\App\Http\Controllers\BuyerController::class, 'update']
+Route::patch('/buyer/{buyer}/edit', [\App\Http\Controllers\Buyer\BuyerController::class, 'update']
 )->middleware(['auth', 'verified'])->name('buyer.update');
 
-Route::delete('/buyer/{buyer}/delete', [\App\Http\Controllers\BuyerController::class, 'delete']
+Route::delete('/buyer/{buyer}/delete', [\App\Http\Controllers\Buyer\BuyerController::class, 'delete']
 )->middleware(['auth', 'verified'])->name('buyer.destroy');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,6 +120,13 @@ Route::delete('/buyer/{buyer}/delete', [\App\Http\Controllers\BuyerController::c
 
 Route::get('/workerSales/{worker}', [\App\Http\Controllers\Worker\WorkerSalesController::class, 'show']
 )->middleware(['auth', 'verified'])->name('workerSales.show');
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// BuyerSales -- Routes /////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/buyerSales/{buyer}', [\App\Http\Controllers\Buyer\BuyerSalesController::class, 'show']
+)->middleware(['auth', 'verified'])->name('buyerSales.show');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 

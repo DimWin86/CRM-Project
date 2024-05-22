@@ -16,10 +16,10 @@ class WorkerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'surname' => $this->surname,
-            'birthday' => $this->birthday,
-            'phone_number' => $this->phone_number,
+            'worker_name' => $this->worker_name,
+            'worker_surname' => $this->worker_surname,
+            'worker_birthday' => $this->worker_birthday,
+            'worker_phone_number' => $this->worker_phone_number,
             'date_on_add' => $this->created_at->diffForHumans(),
         ];
     }

@@ -7,11 +7,10 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const form = useForm({
-    name: '',
-    surname: '',
-    birthday: '',
-    phone_number: '',
-    sale_id: '',
+    worker_name: '',
+    worker_surname: '',
+    worker_birthday: '',
+    worker_phone_number: '',
 });
 
 const submit = () => {
@@ -34,64 +33,64 @@ const submit = () => {
 
                     <form @submit.prevent="submit">
                         <div>
-                            <InputLabel for="name" value="Name"/>
+                            <InputLabel for="worker_name" value="Name"/>
 
                             <TextInput
-                                id="name"
+                                id="worker_name"
                                 type="text"
                                 class="mt-1 block w-full"
-                                v-model="form.name"
+                                v-model="form.worker_name"
                                 required
                                 autofocus
-                                autocomplete="name"
+                                autocomplete="worker_name"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.name"/>
+                            <InputError class="mt-2" :message="form.errors.worker_name"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="surname" value="Surname"/>
+                            <InputLabel for="worker_surname" value="Surname"/>
 
                             <TextInput
-                                id="surname"
+                                id="worker_surname"
                                 type="text"
                                 class="mt-1 block w-full"
-                                v-model="form.surname"
+                                v-model="form.worker_surname"
                                 required
-                                autocomplete="surname"
+                                autocomplete="worker_surname"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.surname"/>
+                            <InputError class="mt-2" :message="form.errors.worker_surname"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="birthday" value="Birthday"/>
+                            <InputLabel for="worker_birthday" value="Birthday"/>
 
                             <TextInput
-                                id="birthday"
+                                id="worker_birthday"
                                 type="date"
                                 class="mt-1 block w-full"
-                                v-model="form.birthday"
+                                v-model="form.worker_birthday"
                                 required
-                                autocomplete="birthday"
+                                autocomplete="worker_birthday"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.birthday"/>
+                            <InputError class="mt-2" :message="form.errors.worker_birthday"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="phone_number" value="Phone Number"/>
+                            <InputLabel for="worker_phone_number" value="Phone Number"/>
 
                             <TextInput
-                                id="phone_number"
+                                id="worker_phone_number"
                                 type="number"
                                 class="mt-1 block w-full"
-                                v-model="form.phone_number"
+                                v-model="form.worker_phone_number"
                                 required
                                 autocomplete="phone_number"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.phone_number"/>
+                            <InputError class="mt-2" :message="form.errors.worker_phone_number"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

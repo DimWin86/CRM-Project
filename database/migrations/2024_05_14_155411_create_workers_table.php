@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->date('birthday');
-            $table->unsignedTinyInteger('phone_number');
+            $table->string('worker_name');
+            $table->string('worker_surname');
+            $table->date('worker_birthday');
+            $table->unsignedTinyInteger('worker_phone_number');
             $table->timestamps();
 
             $table->softDeletes();

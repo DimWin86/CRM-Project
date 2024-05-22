@@ -19,7 +19,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.patch(route('worker.update', props.sale.id));
+    form.patch(route('sale.update', props.sale.id));
 };
 
 </script>
@@ -118,7 +118,7 @@ const submit = () => {
                             rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all"
                                     :class="{ 'opacity-25': form.processing }"
                                     :disabled="form.processing">
-                                Добавить
+                                Отредактировать
                             </button>
                         </div>
                     </form>

@@ -22,7 +22,7 @@ import {Head, Link} from '@inertiajs/vue3';
                             <div v-for="buyer in buyers" class="mb-10 bg-gray-300 rounded-lg w-3/4">
                                 <div class="px-4 py-2 flex flex-row justify-between">
                                     <div class="p-1">
-                                        {{ buyer.name + ' ' + buyer.surname }}
+                                        {{ buyer.buyer_name + ' ' + buyer.buyer_surname }}
                                         <div class="mt-2">
                                             <Link :href="route('buyer.show', buyer.id)"
                                                   class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-gray-300 hover:text-black border border-2 border-gray-700 transition-all"

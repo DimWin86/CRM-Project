@@ -8,7 +8,7 @@ import {Head, Link} from '@inertiajs/vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{'Продавец - ' + worker.name}}</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{'Продавец - ' + worker.worker_name}}</h2>
         </template>
 
         <div class="py-12">
@@ -22,10 +22,10 @@ import {Head, Link} from '@inertiajs/vue3';
                             <div v-for="sale in sales" class="mb-10 bg-gray-300 rounded-lg w-3/4">
                                 <div class="px-4 py-2 flex flex-row justify-between">
                                     <div class="p-1">
-                                        <div>{{ 'Номер продажи: ' + sale.id }}</div>
+                                        <div>{{ 'Номер продажи: ' + sale.s_id }}</div>
                                         <div>{{ 'Сумма продажи: ' + sale.cost_buy + '(&#x20bd)' }}</div>
                                         <div class="mt-2">
-                                            <Link :href="route('sale.show', sale.id)"
+                                            <Link :href="route('sale.show', sale.s_id)"
                                                   class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-gray-300 hover:text-black border border-2 border-gray-700 transition-all"
                                                   :active="route().current('sale.show')">Подробнее
                                             </Link>

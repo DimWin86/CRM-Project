@@ -21,19 +21,25 @@ const props = defineProps(['buyer']);
                         <div v-if="buyer">
                             <div class="mb-10 bg-gray-300 rounded-lg">
                                 <div class="px-4 py-2 ">
-                                    <div>Имя: {{ buyer.name }}</div>
-                                    <div>Фамилия: {{ buyer.surname }}</div>
-                                    <div>День рождения: {{ buyer.birthday }}</div>
-                                    <div>Email: {{ buyer.email }}</div>
-                                    <div>Номер телефона: {{ buyer.phone_number }}</div>
+                                    <div>Имя: {{ buyer.buyer_name }}</div>
+                                    <div>Фамилия: {{ buyer.buyer_surname }}</div>
+                                    <div>День рождения: {{ buyer.buyer_birthday }}</div>
+                                    <div>Email: {{ buyer.buyer_email }}</div>
+                                    <div>Номер телефона: {{ buyer.buyer_phone_number }}</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between mb-10">
                             <Link :href="route('buyer.index')"
                                   class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all"
                                   :active="route().current('\'buyer.index')"><< Вернуться назад
                             </Link>
+
+                            <Link :href="route('buyerSales.show', buyer.id)"
+                                  class="px-2 py-1 mr-7 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all"
+                                  :active="route().current('\'buyerSales.show')">Все продажи
+                            </Link>
+
                             <Link :href="route('buyer.edit', buyer.id)"
                                   class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all"
                                   :active="route().current('\'buyer.edit')">Редактировать

@@ -2,11 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Resources\Sale\SaleResource;
 use App\Models\Buyer;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Worker;
 use Illuminate\Console\Command;
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Facades\DB;
 
 class DevCommand extends Command
 {
@@ -29,7 +32,8 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        $buyer = Buyer::find(1)->sales;
-        dd($buyer->toArray());
+        $dbCount = DB::table('products')->select('count_product')->get();
+
+        dd($dbCount);
     }
 }

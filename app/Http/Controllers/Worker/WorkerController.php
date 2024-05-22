@@ -16,7 +16,6 @@ class WorkerController extends Controller
 
         $workers = WorkerResource::collection($workersAll)->resolve();
 
-
         return inertia('Worker/Index', compact('workers'));
     }
 
@@ -32,17 +31,17 @@ class WorkerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'surname' => 'required|string',
-            'birthday' => 'required|date',
-            'phone_number' => 'required|integer',
+            'worker_name' => 'required|string',
+            'worker_surname' => 'required|string',
+            'worker_birthday' => 'required|date',
+            'worker_phone_number' => 'required|integer',
         ]);
 
         Worker::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'birthday' => $request->birthday,
-            'phone_number' => $request->phone_number,
+            'worker_name' => $request->worker_name,
+            'worker_surname' => $request->worker_surname,
+            'worker_birthday' => $request->worker_birthday,
+            'worker_phone_number' => $request->worker_phone_number,
         ]);
 
         return redirect()->route('worker.index');
@@ -56,17 +55,17 @@ class WorkerController extends Controller
     public function update(Request $request, Worker $worker)
     {
         $request->validate([
-            'name' => 'required|string',
-            'surname' => 'required|string',
-            'birthday' => 'required|date',
-            'phone_number' => 'required|integer',
+            'worker_name' => 'required|string',
+            'worker_surname' => 'required|string',
+            'worker_birthday' => 'required|date',
+            'worker_phone_number' => 'required|integer',
         ]);
 
         $worker->update([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'birthday' => $request->birthday,
-            'phone_number' => $request->phone_number,
+            'worker_name' => $request->worker_name,
+            'worker_surname' => $request->worker_surname,
+            'worker_birthday' => $request->worker_birthday,
+            'worker_phone_number' => $request->worker_phone_number,
         ]);
 
         return redirect()->route('worker.show', $worker->id);

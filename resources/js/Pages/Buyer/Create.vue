@@ -7,11 +7,11 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const form = useForm({
-    name: '',
-    surname: '',
-    birthday: '',
-    email: '',
-    phone_number: '',
+    buyer_name: '',
+    buyer_surname: '',
+    buyer_birthday: '',
+    buyer_email: '',
+    buyer_phone_number: '',
 });
 
 const submit = () => {
@@ -34,78 +34,78 @@ const submit = () => {
 
                     <form @submit.prevent="submit">
                         <div>
-                            <InputLabel for="name" value="Имя"/>
+                            <InputLabel for="buyer_name" value="Имя"/>
 
                             <TextInput
-                                id="worker_id"
+                                id="buyer_name"
                                 type="text"
                                 class="mt-1 block w-full"
-                                v-model="form.name"
+                                v-model="form.buyer_name"
                                 required
                                 autofocus
-                                autocomplete="name"
+                                autocomplete="buyer_name"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.name"/>
+                            <InputError class="mt-2" :message="form.errors.buyer_name"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="surname" value="Фамилия"/>
+                            <InputLabel for="buyer_surname" value="Фамилия"/>
 
                             <TextInput
-                                id="surname"
+                                id="buyer_surname"
                                 type="text"
                                 class="mt-1 block w-full"
-                                v-model="form.surname"
+                                v-model="form.buyer_surname"
                                 required
-                                autocomplete="product_id"
+                                autocomplete="buyer_surname"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.surname"/>
+                            <InputError class="mt-2" :message="form.errors.buyer_surname"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="buyer_id" value="День рождения"/>
+                            <InputLabel for="buyer_birthday" value="День рождения"/>
 
                             <TextInput
                                 id="birthday"
                                 type="date"
                                 class="mt-1 block w-full"
-                                v-model="form.birthday"
-                                autocomplete="birthday"
+                                v-model="form.buyer_birthday"
+                                autocomplete="buyer_birthday"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.birthday"/>
+                            <InputError class="mt-2" :message="form.errors.buyer_birthday"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="email" value="Email"/>
+                            <InputLabel for="buyer_email" value="Email"/>
 
                             <TextInput
-                                id="email"
+                                id="buyer_email"
                                 type="email"
                                 class="mt-1 block w-full"
-                                v-model="form.email"
+                                v-model="form.buyer_email"
                                 required
-                                autocomplete="email"
+                                autocomplete="buyer_email"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.email"/>
+                            <InputError class="mt-2" :message="form.errors.buyer_email"/>
                         </div>
 
                         <div class="mt-4">
-                            <InputLabel for="phone_number" value="Номер телефона"/>
+                            <InputLabel for="buyer_phone_number" value="Номер телефона"/>
 
                             <TextInput
-                                id="phone_number"
+                                id="buyer_phone_number"
                                 type="number"
                                 class="mt-1 block w-full"
-                                v-model="form.phone_number"
+                                v-model="form.buyer_phone_number"
                                 required
-                                autocomplete="phone_number"
+                                autocomplete="buyer_phone_number"
                             />
 
-                            <InputError class="mt-2" :message="form.errors.phone_number"/>
+                            <InputError class="mt-2" :message="form.errors.buyer_phone_number"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

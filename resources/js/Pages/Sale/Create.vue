@@ -6,6 +6,9 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
+const props = defineProps(['workerData', 'buyerData']);
+
+
 const form = useForm({
     worker_id: '',
     product_id: '',
@@ -66,14 +69,14 @@ const submit = () => {
 
                         <div class="mt-4">
                             <InputLabel for="buyer_id" value="Покупатель"/>
-
                             <TextInput
                                 id="buyer_id"
-                                type="number"
+                                type="text"
                                 class="mt-1 block w-full"
                                 v-model="form.buyer_id"
                                 autocomplete="buyer_id"
                             />
+
 
                             <InputError class="mt-2" :message="form.errors.buyer_id"/>
                         </div>
@@ -123,3 +126,14 @@ const submit = () => {
         </div>
     </AuthenticatedLayout>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            selected: ''
+        }
+    }
+}
+
+</script>
