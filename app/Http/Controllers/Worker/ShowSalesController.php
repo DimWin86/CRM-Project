@@ -10,7 +10,7 @@ use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class WorkerSalesController extends Controller
+class ShowSalesController extends Controller
 {
     public function show(Worker $worker)
     {

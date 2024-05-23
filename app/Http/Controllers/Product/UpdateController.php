@@ -6,27 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductAddCountController extends Controller
+class UpdateController extends Controller
 {
-    public function edit(Product $product)
-    {
-        return inertia('ProductAddCount/Edit', compact('product'));
-    }
-
     public function update(Product $product, Request $request)
     {
         $request->validate([
+            'name_product' => 'required|string',
+            'cost_product' => 'required|integer',
             'count_product' => 'required|integer',
             'date_receiving' => 'required|date',
         ]);
 
-        $productCount = ($product->count_product) + ($request->count_product);
-
         $product->update([
-            'count_product' => $productCount,
+            'name_product' => $request->name_product,
+            'cost_product' => $request->cost_product,
+            'count_product' => $request->count_product,
             'date_receiving' => $request->date_receiving,
         ]);
 
-        return redirect()->route('product.show', $product->id);
+        return redirect()->route('product.index');
     }
 }

@@ -21,121 +21,120 @@ Route::get('/dashboard', function () {
 
 // Worker -- Routes /////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/workers', [\App\Http\Controllers\Worker\WorkerController::class, 'index']
+Route::get('/workers', [\App\Http\Controllers\Worker\IndexController::class, 'index']
 )->middleware(['auth', 'verified'])->name('worker.index');
 
-Route::get('/worker/create', function () {
-    return Inertia::render('Worker/Create');
-})->middleware(['auth', 'verified'])->name('worker.create');
+Route::get('/worker/create', [\App\Http\Controllers\Worker\CreateController::class, 'create']
+)->middleware(['auth', 'verified'])->name('worker.create');
 
-Route::get('/worker/{worker}', [\App\Http\Controllers\Worker\WorkerController::class, 'show']
+Route::get('/worker/{worker}', [\App\Http\Controllers\Worker\ShowController::class, 'show']
 )->middleware(['auth', 'verified'])->name('worker.show');
 
-Route::post('/worker/create', [\App\Http\Controllers\Worker\WorkerController::class, 'store']
+Route::post('/worker/create', [\App\Http\Controllers\Worker\StoreController::class, 'store']
 )->middleware(['auth', 'verified'])->name('worker.store');
 
-Route::get('/worker/{worker}/edit', [\App\Http\Controllers\Worker\WorkerController::class, 'edit']
+Route::get('/worker/{worker}/edit', [\App\Http\Controllers\Worker\EditController::class, 'edit']
 )->middleware(['auth', 'verified'])->name('worker.edit');
 
-Route::patch('/worker/{worker}', [\App\Http\Controllers\Worker\WorkerController::class, 'update']
+Route::patch('/worker/{worker}', [\App\Http\Controllers\Worker\UpdateController::class, 'update']
 )->middleware(['auth', 'verified'])->name('worker.update');
 
-Route::delete('/worker/{worker}/delete', [\App\Http\Controllers\Worker\WorkerController::class, 'delete']
+Route::delete('/worker/{worker}/delete', [\App\Http\Controllers\Worker\DeleteController::class, 'delete']
 )->middleware(['auth', 'verified'])->name('worker.destroy');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Product -- Routes /////////////////////////////////////////////////////////////////////////////////
-Route::get('/products', [\App\Http\Controllers\Product\ProductController::class, 'index']
+Route::get('/products', [\App\Http\Controllers\Product\IndexController::class, 'index']
 )->middleware(['auth', 'verified'])->name('product.index');
 
-Route::get('/product/create', [\App\Http\Controllers\Product\ProductController::class, 'create']
+Route::get('/product/create', [\App\Http\Controllers\Product\CreateController::class, 'create']
 )->middleware(['auth', 'verified'])->name('product.create');
 
-Route::post('/product/create', [\App\Http\Controllers\Product\ProductController::class, 'store']
+Route::post('/product/create', [\App\Http\Controllers\Product\StoreController::class, 'store']
 )->middleware(['auth', 'verified'])->name('product.store');
 
-Route::get('/product/{product}', [\App\Http\Controllers\Product\ProductController::class, 'show']
+Route::get('/product/{product}', [\App\Http\Controllers\Product\ShowController::class, 'show']
 )->middleware(['auth', 'verified'])->name('product.show');
 
-Route::get('/product/{product}/edit', [\App\Http\Controllers\Product\ProductController::class, 'edit']
+Route::get('/product/{product}/edit', [\App\Http\Controllers\Product\EditController::class, 'edit']
 )->middleware(['auth', 'verified'])->name('product.edit');
 
-Route::patch('/product/{product}', [\App\Http\Controllers\Product\ProductController::class, 'update']
+Route::patch('/product/{product}', [\App\Http\Controllers\Product\UpdateController::class, 'update']
 )->middleware(['auth', 'verified'])->name('product.update');
 
-Route::delete('/product/{product}/delete', [\App\Http\Controllers\Product\ProductController::class, 'delete']
+Route::delete('/product/{product}/delete', [\App\Http\Controllers\Product\DeleteController::class, 'delete']
 )->middleware(['auth', 'verified'])->name('product.destroy');
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Sale -- Routes /////////////////////////////////////////////////////////////////////////////////
-Route::get('/sales', [\App\Http\Controllers\Sale\SaleController::class, 'index']
+Route::get('/sales', [\App\Http\Controllers\Sale\IndexController::class, 'index']
 )->middleware(['auth', 'verified'])->name('sale.index');
 
-Route::get('/sale/create', [\App\Http\Controllers\Sale\SaleController::class, 'create']
+Route::get('/sale/create', [\App\Http\Controllers\Sale\CreateController::class, 'create']
 )->middleware(['auth', 'verified'])->name('sale.create');
 
-Route::post('/sale/create', [\App\Http\Controllers\Sale\SaleController::class, 'store']
+Route::post('/sale/create', [\App\Http\Controllers\Sale\StoreController::class, 'store']
 )->middleware(['auth', 'verified'])->name('sale.store');
 
-Route::get('/sale/{sale}', [\App\Http\Controllers\Sale\SaleController::class, 'show']
+Route::get('/sale/{sale}', [\App\Http\Controllers\Sale\ShowController::class, 'show']
 )->middleware(['auth', 'verified'])->name('sale.show');
 
-Route::get('/sale/{sale}/edit', [\App\Http\Controllers\Sale\SaleController::class, 'edit']
+Route::get('/sale/{sale}/edit', [\App\Http\Controllers\Sale\EditController::class, 'edit']
 )->middleware(['auth', 'verified'])->name('sale.edit');
 
-Route::patch('/sale/{sale}', [\App\Http\Controllers\Sale\SaleController::class, 'update']
+Route::patch('/sale/{sale}', [\App\Http\Controllers\Sale\UpdateController::class, 'update']
 )->middleware(['auth', 'verified'])->name('sale.update');
 
-Route::delete('/sale/{sale}/delete', [\App\Http\Controllers\Sale\SaleController::class, 'delete']
+Route::delete('/sale/{sale}/delete', [\App\Http\Controllers\Sale\DeleteController::class, 'delete']
 )->middleware(['auth', 'verified'])->name('sale.destroy');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Buyer -- Routes /////////////////////////////////////////////////////////////////////////////////
-Route::get('/buyers', [\App\Http\Controllers\Buyer\BuyerController::class, 'index']
+Route::get('/buyers', [\App\Http\Controllers\Buyer\IndexController::class, 'index']
 )->middleware(['auth', 'verified'])->name('buyer.index');
 
-Route::get('/buyer/create', [\App\Http\Controllers\Buyer\BuyerController::class, 'create']
+Route::get('/buyer/create', [\App\Http\Controllers\Buyer\CreateController::class, 'create']
 )->middleware(['auth', 'verified'])->name('buyer.create');
 
-Route::post('/buyer/create', [\App\Http\Controllers\Buyer\BuyerController::class, 'store']
+Route::post('/buyer/create', [\App\Http\Controllers\Buyer\StoreController::class, 'store']
 )->middleware(['auth', 'verified'])->name('buyer.store');
 
-Route::get('/buyer/{buyer}', [\App\Http\Controllers\Buyer\BuyerController::class, 'show']
+Route::get('/buyer/{buyer}', [\App\Http\Controllers\Buyer\ShowController::class, 'show']
 )->middleware(['auth', 'verified'])->name('buyer.show');
 
-Route::get('/buyer/{buyer}/edit', [\App\Http\Controllers\Buyer\BuyerController::class, 'edit']
+Route::get('/buyer/{buyer}/edit', [\App\Http\Controllers\Buyer\EditController::class, 'edit']
 )->middleware(['auth', 'verified'])->name('buyer.edit');
 
-Route::patch('/buyer/{buyer}/edit', [\App\Http\Controllers\Buyer\BuyerController::class, 'update']
+Route::patch('/buyer/{buyer}/edit', [\App\Http\Controllers\Buyer\UpdateController::class, 'update']
 )->middleware(['auth', 'verified'])->name('buyer.update');
 
-Route::delete('/buyer/{buyer}/delete', [\App\Http\Controllers\Buyer\BuyerController::class, 'delete']
+Route::delete('/buyer/{buyer}/delete', [\App\Http\Controllers\Buyer\DeleteController::class, 'delete']
 )->middleware(['auth', 'verified'])->name('buyer.destroy');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // WorkerSales -- Routes /////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/workerSales/{worker}', [\App\Http\Controllers\Worker\WorkerSalesController::class, 'show']
+Route::get('/workerSales/{worker}', [\App\Http\Controllers\Worker\ShowSalesController::class, 'show']
 )->middleware(['auth', 'verified'])->name('workerSales.show');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // BuyerSales -- Routes /////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/buyerSales/{buyer}', [\App\Http\Controllers\Buyer\BuyerSalesController::class, 'show']
+Route::get('/buyerSales/{buyer}', [\App\Http\Controllers\Buyer\ShowSalesController::class, 'show']
 )->middleware(['auth', 'verified'])->name('buyerSales.show');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ProductAddCount -- Routes /////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/productAddCount/{product}', [\App\Http\Controllers\Product\ProductAddCountController::class, 'edit']
+Route::get('/productAddCount/{product}', [\App\Http\Controllers\Product\AddCountController::class, 'edit']
 )->middleware(['auth', 'verified'])->name('productAddCount.edit');
 
-Route::patch('/productAddCount/{product}', [\App\Http\Controllers\Product\ProductAddCountController::class, 'update']
+Route::patch('/productAddCount/{product}', [\App\Http\Controllers\Product\AddCountController::class, 'update']
 )->middleware(['auth', 'verified'])->name('productAddCount.update');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

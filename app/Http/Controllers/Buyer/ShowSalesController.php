@@ -9,7 +9,7 @@ use App\Models\Sale;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
-class BuyerSalesController extends Controller
+class ShowSalesController extends Controller
 {
     public function show(Buyer $buyer)
     {
