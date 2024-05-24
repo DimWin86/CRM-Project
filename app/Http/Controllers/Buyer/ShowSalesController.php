@@ -9,15 +9,11 @@ use App\Models\Sale;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
-class ShowSalesController extends Controller
+class ShowSalesController extends BaseController
 {
     public function show(Buyer $buyer)
     {
-        $salesAll = $buyer->sales;
-
-        $sales = SaleResource::collection($salesAll)->resolve();
-
-
+        $sales = $this->service->showSales($buyer);
 
         return inertia('BuyerSale/Show', compact('buyer', 'sales') );
     }

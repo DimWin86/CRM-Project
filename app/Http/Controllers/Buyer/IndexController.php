@@ -7,13 +7,11 @@ use App\Http\Resources\Buyer\BuyerResource;
 use App\Models\Buyer;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function index()
     {
-        $buyersAll = Buyer::all();
-
-        $buyers = BuyerResource::collection($buyersAll)->resolve();
+        $buyers = $this->service->index();
 
         return inertia('Buyer/Index', compact('buyers'));
     }

@@ -19,50 +19,65 @@ class Service
             ->orderBy('s.created_at', 'DESC')
             ->get();
 
-        $salesData = SaleResource::collection($salesJoins)->resolve();
-
-        return $salesData;
+        return SaleResource::collection($salesJoins)->resolve();
     }
 
-    public function store($saleRequest)
+///////////// ----- Потом переделаю под Join чтобы все было красивее ///////////////////////
+//    public function show($sale)
+//    {
+//        $worker = $sale->worker;
+//
+//        $buyer = $sale->buyer;
+//
+//        $product = $sale->product;
+//
+//        return [$worker, $buyer, $product];
+//    }
+///////////////////////////////////////////
+
+    public function store($request)
     {
-        $product = Product::find($saleRequest->product_id);
+        $request->validated();
+
+        $product = Product::find($request->product_id);
 
         $dbCount = DB::table('products')->select('count_product')->get();
-        $productId = $saleRequest->product_id - 1;
+        $productId = $request->product_id - 1;
 
         $dbCount = $dbCount->pluck('count_product')->get($productId);
 
-        $count = $dbCount - $saleRequest->count_buy;
+        $count = $dbCount - $request->count_buy;
 
         $product->update([
             'count_product' => $count
         ]);
 
         Sale::create([
-            'worker_id' => $saleRequest->worker_id,
-            'product_id' => $saleRequest->product_id,
-            'buyer_id' => $saleRequest->buyer_id,
-            'count_buy' => $saleRequest->count_buy,
-            'cost_buy' => $saleRequest->cost_buy,
+            'worker_id' => $request->worker_id,
+            'product_id' => $request->product_id,
+            'buyer_id' => $request->buyer_id,
+            'count_buy' => $request->count_buy,
+            'cost_buy' => $request->cost_buy,
         ]);
     }
 
-    public function update($sale, $saleRequest)
+    public function update($sale, $request)
     {
-        $product = Product::find($saleRequest->product_id);
+        $request->validated();
+
+        $product = Product::find($request->product_id);
 
         $dbCount = DB::table('products')->select('count_product')->get();
-        $productId = $saleRequest->product_id - 1;
+        $productId = $request->product_id - 1;
 
         $dbCount = $dbCount->pluck('count_product')->get($productId);
 
-        if ($sale->count_buy > $saleRequest->count_buy) {
-            $saleDecr = $sale->count_buy - $saleRequest->count_buy;
+        if ($sale->count_buy > $request->count_buy) {
+            $saleDecr = $sale->count_buy - $request->count_buy;
             $count = $dbCount + $saleDecr;
         }
-        elseif ($sale->count_buy < $saleRequest->count_buy) {
-            $saleDecr = $saleRequest->count_buy - $sale->count_buy;
+        elseif ($sale->count_buy < $request->count_buy) {
+            $saleDecr = $request->count_buy - $sale->count_buy;
             $count = $dbCount - $saleDecr;
         }
 
@@ -71,11 +86,11 @@ class Service
         ]);
 
         $sale->update([
-            'worker_id' => $saleRequest->worker_id,
-            'product_id' => $saleRequest->product_id,
-            'buyer_id' => $saleRequest->buyer_id,
-            'count_buy' => $saleRequest->count_buy,
-            'cost_buy' => $saleRequest->cost_buy,
+            'worker_id' => $request->worker_id,
+            'product_id' => $request->product_id,
+            'buyer_id' => $request->buyer_id,
+            'count_buy' => $request->count_buy,
+            'cost_buy' => $request->cost_buy,
         ]);
 
         return redirect()->route('sale.index');

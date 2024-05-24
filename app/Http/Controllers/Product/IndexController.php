@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function index()
     {
-        $products = Product::all();
+        $products = $this->service->index();
 
         return inertia('Product/Index', compact('products'));
     }

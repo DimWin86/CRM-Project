@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Buyer;
 use Illuminate\Http\Request;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
     public function edit(Buyer $buyer)
     {

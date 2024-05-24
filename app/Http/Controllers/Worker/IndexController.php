@@ -7,13 +7,11 @@ use App\Http\Resources\Worker\WorkerResource;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function index()
     {
-        $workersAll = Worker::all();
-
-        $workers = WorkerResource::collection($workersAll)->resolve();
+        $workers = $this->service->index();
 
         return inertia('Worker/Index', compact('workers'));
     }

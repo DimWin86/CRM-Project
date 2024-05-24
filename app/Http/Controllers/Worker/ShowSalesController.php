@@ -10,7 +10,7 @@ use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ShowSalesController extends Controller
+class ShowSalesController extends BaseController
 {
     public function show(Worker $worker)
     {
@@ -19,8 +19,6 @@ class ShowSalesController extends Controller
             ->join('workers as w', 's.worker_id', '=', 'w.id')
             ->get();
 
-//        $salesAll = $worker->sales;
-//
         $sales = WorkerSaleResource::collection($data)->resolve();
 
         return inertia('WorkerSale/Show', compact('worker', 'sales') );
