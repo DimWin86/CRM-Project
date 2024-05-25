@@ -3,29 +3,20 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\AddCountRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class AddCountController extends Controller
+class AddCountController extends BaseController
 {
     public function edit(Product $product)
     {
         return inertia('ProductAddCount/Edit', compact('product'));
     }
 
-    public function update(Product $product, Request $request)
+    public function update(Product $product, AddCountRequest $request)
     {
-        $request->validate([
-            'count_product' => 'required|integer',
-            'date_receiving' => 'required|date',
-        ]);
-
-        $productCount = ($product->count_product) + ($request->count_product);
-
-        $product->update([
-            'count_product' => $productCount,
-            'date_receiving' => $request->date_receiving,
-        ]);
+        $this->addCountService->update($request, $product);
 
         return redirect()->route('product.show', $product->id);
     }

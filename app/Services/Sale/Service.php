@@ -22,18 +22,18 @@ class Service
         return SaleResource::collection($salesJoins)->resolve();
     }
 
-///////////// ----- Потом переделаю под Join чтобы все было красивее ///////////////////////
-//    public function show($sale)
-//    {
-//        $worker = $sale->worker;
-//
-//        $buyer = $sale->buyer;
-//
-//        $product = $sale->product;
-//
-//        return [$worker, $buyer, $product];
-//    }
-///////////////////////////////////////////
+    public function show($sale)
+    {
+        $queryData = DB::table('sales as s')
+            ->select('w.worker_name', 'w.worker_surname', 's.worker_id', 's.buyer_id', 's.count_buy', 's.id', 's.cost_buy', 'b.buyer_name', 'b.buyer_surname', 'p.name_product', )
+            ->where('s.id', '=', $sale->id)
+            ->join('workers as w', 's.worker_id', '=', 'w.id')
+            ->join('buyers as b', 's.buyer_id', '=', 'b.id')
+            ->join('products as p', 's.product_id', '=', 'p.id')
+            ->get();
+
+        return $queryData[0];
+    }
 
     public function store($request)
     {

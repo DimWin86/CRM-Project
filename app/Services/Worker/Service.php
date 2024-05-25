@@ -20,15 +20,15 @@ class Service
         return WorkerResource::collection($workersAll)->resolve();
     }
 
-//    public function showSales($buyer)
-//    {
-//        $data = DB::table('sales as s')
-//            ->select('w.id', 'w.worker_name', 's.cost_buy', 's.id as s_id', 's.created_at')
-//            ->join('workers as w', 's.worker_id', '=', 'w.id')
-//            ->get();
-//
-//        return WorkerSaleResource::collection($data)->resolve();
-//    }
+    public function showSales()
+    {
+        $data = DB::table('sales as s')
+            ->select('w.id', 'w.worker_name', 's.cost_buy', 's.id as s_id', 's.created_at')
+            ->join('workers as w', 's.worker_id', '=', 'w.id')
+            ->get();
+
+        return WorkerSaleResource::collection($data)->resolve();
+    }
 
     public function store($request)
     {

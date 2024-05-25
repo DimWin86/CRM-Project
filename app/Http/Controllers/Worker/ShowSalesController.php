@@ -14,12 +14,7 @@ class ShowSalesController extends BaseController
 {
     public function show(Worker $worker)
     {
-        $data = DB::table('sales as s')
-            ->select('w.id', 'w.worker_name', 's.cost_buy', 's.id as s_id', 's.created_at')
-            ->join('workers as w', 's.worker_id', '=', 'w.id')
-            ->get();
-
-        $sales = WorkerSaleResource::collection($data)->resolve();
+        $sales = $this->service->showSales();
 
         return inertia('WorkerSale/Show', compact('worker', 'sales') );
     }

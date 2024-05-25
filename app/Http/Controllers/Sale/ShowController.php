@@ -10,12 +10,8 @@ class ShowController extends BaseController
 {
     public function show(Sale $sale)
     {
-        $worker = $sale->worker;
+        $data = $this->service->show($sale);
 
-        $buyer = $sale->buyer;
-
-        $product = $sale->product;
-
-        return inertia('Sale/Show', compact('sale', ['worker', 'buyer', 'product']));
+        return inertia('Sale/Show', compact('data'));
     }
 }

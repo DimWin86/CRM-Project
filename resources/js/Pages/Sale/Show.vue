@@ -16,17 +16,20 @@ import {Head, Link} from '@inertiajs/vue3';
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
-                        <div v-if="sale">
+                    <div v-if="data" class="p-6 text-gray-900">
+                        <div>
                             <div class="mb-10 bg-gray-300 rounded-lg">
                                 <div class="px-4 py-2 ">
-                                    <div class= "mb-2">Продавец: {{ worker.worker_name + ' ' + worker.worker_surname }}<a class="ml-9 px-1 py-0.5 text-xs text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black
-                                  border border-2 border-gray-700 transition-all" :href="route('worker.show', sale.worker_id)">Прейти в профиль</a></div>
-                                    <div>Покупатель: {{ buyer.buyer_name + ' ' + buyer.buyer_surname }}<a class="ml-4 px-1 py-0.5 text-xs text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black
-                                  border border-2 border-gray-700 transition-all" :href="route('buyer.show', sale.buyer_id)">Прейти в профиль</a></div>
-                                    <div>Продукт: {{ product.name_product }}</div>
-                                    <div>Количество продуктов: {{ sale.count_buy }}</div>
-                                    <div>Сумма продажи: {{ sale.cost_buy + '(&#x20bd)' }}</div>
+                                    <div class="mb-2">Продавец: {{ data.worker_name + ' ' + data.worker_surname }}<a
+                                        class="ml-9 px-1 py-0.5 text-xs text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black
+                                  border border-2 border-gray-700 transition-all"
+                                        :href="route('worker.show', data.worker_id)">Прейти в профиль</a></div>
+                                    <div>Покупатель: {{ data.buyer_name + ' ' + data.buyer_surname }}<a class="ml-4 px-1 py-0.5 text-xs text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black
+                                  border border-2 border-gray-700 transition-all" :href="route('buyer.show', data.buyer_id)">Прейти
+                                        в профиль</a></div>
+                                    <div>Продукт: {{ data.name_product }}</div>
+                                    <div>Количество продуктов: {{ data.count_buy }}</div>
+                                    <div>Сумма продажи: {{ data.cost_buy + '(&#x20bd)' }}</div>
                                 </div>
                             </div>
                         </div>
@@ -36,15 +39,15 @@ import {Head, Link} from '@inertiajs/vue3';
                                   border border-2 border-gray-700 transition-all"
                                   :active="route().current('\'sale.index')"><< Вернуться назад
                             </Link>
-                            <Link :href="route('sale.edit', sale.id)"
+                            <Link :href="route('sale.edit', data.id)"
                                   class="px-2 py-1 text-sm text-white bg-gray-700 rounded-lg hover:bg-white hover:text-black border border-2 border-gray-700 transition-all"
                                   :active="route().current('\'sale.edit')">Редактировать
                             </Link>
                         </div>
-                            <p @click="deleteSale(sale.id)"
-                               class="cursor-pointer mx-auto text-center text-white w-1/2 mt-3 px-2 py-1 text-sm bg-red-500
+                        <p @click="deleteSale(data.id)"
+                           class="cursor-pointer mx-auto text-center text-white w-1/2 mt-3 px-2 py-1 text-sm bg-red-500
                                rounded-lg hover:bg-white hover:text-red-500 border border-2 border-red-500 transition-all">
-                                Удалить</p>
+                            Удалить</p>
                     </div>
                 </div>
             </div>
@@ -63,11 +66,9 @@ export default {
     },
 
     props: [
-        'sale',
-        'product',
-        'worker',
-        'buyer'
+        'data',
     ],
+
 }
 </script>
 
