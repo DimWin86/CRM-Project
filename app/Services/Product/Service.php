@@ -13,25 +13,15 @@ class Service
 
     public function store($request)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        Product::create([
-            'name_product' => $request->name_product,
-            'cost_product' => $request->cost_product,
-            'count_product' => $request->count_product,
-            'date_receiving' => $request->date_receiving,
-        ]);
+        Product::create($data);
     }
 
     public function update($request, $product)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        $product->update([
-            'name_product' => $request->name_product,
-            'cost_product' => $request->cost_product,
-            'count_product' => $request->count_product,
-            'date_receiving' => $request->date_receiving,
-        ]);
+        $product->update($data);
     }
 }

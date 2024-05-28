@@ -37,7 +37,7 @@ class Service
 
     public function store($request)
     {
-        $request->validated();
+        $data = $request->validated();
 
         $product = Product::find($request->product_id);
 
@@ -52,13 +52,7 @@ class Service
             'count_product' => $count
         ]);
 
-        Sale::create([
-            'worker_id' => $request->worker_id,
-            'product_id' => $request->product_id,
-            'buyer_id' => $request->buyer_id,
-            'count_buy' => $request->count_buy,
-            'cost_buy' => $request->cost_buy,
-        ]);
+        Sale::create($data);
     }
 
     public function update($sale, $request)

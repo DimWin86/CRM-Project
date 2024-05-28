@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 Route::get('/workers', [\App\Http\Controllers\Worker\IndexController::class, 'index']
 )->middleware(['auth', 'verified'])->name('worker.index');
 
-Route::get('/worker/create', [\App\Http\Controllers\Worker\CreateController::class, 'create']
+Route::get('/worker', [\App\Http\Controllers\Worker\CreateController::class, 'create']
 )->middleware(['auth', 'verified'])->name('worker.create');
 
 Route::get('/worker/{worker}', [\App\Http\Controllers\Worker\ShowController::class, 'show']

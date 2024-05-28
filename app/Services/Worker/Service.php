@@ -32,25 +32,15 @@ class Service
 
     public function store($request)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        Worker::create([
-            'worker_name' => $request->worker_name,
-            'worker_surname' => $request->worker_surname,
-            'worker_birthday' => $request->worker_birthday,
-            'worker_phone_number' => $request->worker_phone_number,
-        ]);
+        Worker::create($data);
     }
 
     public function update($request, $worker)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        $worker->update([
-            'worker_name' => $request->worker_name,
-            'worker_surname' => $request->worker_surname,
-            'worker_birthday' => $request->worker_birthday,
-            'worker_phone_number' => $request->worker_phone_number,
-        ]);
+        $worker->update($data);
     }
 }

@@ -7,11 +7,11 @@ use App\Http\Requests\Buyer\StoreRequest;
 use App\Models\Buyer;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function store(StoreRequest $request)
     {
-        $this->store($request);
+        $this->service->store($request);
 
         return redirect()->route('buyer.index');
     }

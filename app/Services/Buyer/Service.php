@@ -25,27 +25,15 @@ class Service
 
     public function store($request)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        Buyer::create([
-            'buyer_name' => $request->buyer_name,
-            'buyer_surname' => $request->buyer_surname,
-            'buyer_birthday' => $request->buyer_birthday,
-            'buyer_email' => $request->buyer_email,
-            'buyer_phone_number' => $request->buyer_phone_number,
-        ]);
+        Buyer::create($data);
     }
 
     public function update($request, $buyer)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        $buyer->update([
-            'buyer_name' => $request->buyer_name,
-            'buyer_surname' => $request->buyer_surname,
-            'buyer_birthday' => $request->buyer_birthday,
-            'buyer_email' => $request->buyer_email,
-            'buyer_phone_number' => $request->buyer_phone_number,
-        ]);
+        $buyer->update($data);
     }
 }
