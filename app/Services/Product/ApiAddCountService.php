@@ -2,8 +2,15 @@
 
 namespace App\Services\Product;
 
-class AddCountService
+class ApiAddCountService
 {
+    public function edit($product)
+    {
+        return response()->json([
+            'data' => $product,
+        ]);
+    }
+
     public function update($request, $product)
     {
         $data = $request->validated();
@@ -13,6 +20,10 @@ class AddCountService
         $product->update([
             'count_product' => $productCount,
             'date_receiving' => $data['date_receiving'],
+        ]);
+
+        return response()->json([
+            'data' => $product,
         ]);
     }
 }

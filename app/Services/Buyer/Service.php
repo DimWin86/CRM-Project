@@ -5,7 +5,6 @@ namespace App\Services\Buyer;
 use App\Http\Resources\Buyer\BuyerResource;
 use App\Http\Resources\Sale\SaleResource;
 use App\Models\Buyer;
-use App\Models\Product;
 
 class Service
 {
